@@ -63,16 +63,17 @@ install_tflint() {
     if [[ "$(uname)" == "Darwin" ]]; then
         # Mac
         TAR_CMD="bsdtar"
+        # e.g: $ bsdtar zxf tfupdate.zip -C ~/bin
+        # e.g: $ bsdtar zxf /var/folders/d9/8bnn6sfj32x6pv14t1k5hflw0000gq/T/asdf_tflint.dJhoyJh7/tfupdate.zip -C ~/bin
+        $TAR_CMD zxf "${download_path}" -C "${install_bin_path}"
     elif [[ "$(uname)" == "Linux" ]]; then
         # Linux
         TAR_CMD="tar"
+        $TAR_CMD -xzf "${download_path}" -C "${install_bin_path}"
     else
         echo "Unsupported operating system"
         exit 1
     fi
-    # e.g: $ bsdtar zxf tfupdate.zip -C ~/bin
-    # e.g: $ bsdtar zxf /var/folders/d9/8bnn6sfj32x6pv14t1k5hflw0000gq/T/asdf_tflint.dJhoyJh7/tfupdate.zip -C ~/bin
-    $TAR_CMD zxf "${download_path}" -C "${install_bin_path}"
 
     echo "The installation was successful!"
 
