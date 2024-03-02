@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -eo pipefail
+set -xeo pipefail
 
 # make a temporary download directory with a cleanup hook
 TMP_DOWNLOAD_DIR="$(mktemp -d -t "asdf_tflint_XXXXXX")"
