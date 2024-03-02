@@ -59,9 +59,20 @@ install_tflint() {
     # curl -L -C - "https://github.com/terraform-linters/tflint/releases/download/v${version}/tflint_${platform}_${arch}.tar.gz"  | tar zxf - -C "${install_bin_path}" tfupdate
     curl -sL -o "${download_path}" "https://github.com/terraform-linters/tflint/releases/download/v${version}/tflint_${platform}_${arch}.zip"
 
+    # Check if the system is Mac or Linux
+    if [[ "$(uname)" == "Darwin" ]]; then
+        # Mac
+        TAR_CMD="bsdtar"
+    elif [[ "$(uname)" == "Linux" ]]; then
+        # Linux
+        TAR_CMD="tar"
+    else
+        echo "Unsupported operating system"
+        exit 1
+    fi
     # e.g: $ bsdtar zxf tfupdate.zip -C ~/bin
     # e.g: $ bsdtar zxf /var/folders/d9/8bnn6sfj32x6pv14t1k5hflw0000gq/T/asdf_tflint.dJhoyJh7/tfupdate.zip -C ~/bin
-    bsdtar zxf "${download_path}" -C "${install_bin_path}"
+    $TAR_CMD zxf "${download_path}" -C "${install_bin_path}"
 
     echo "The installation was successful!"
 
