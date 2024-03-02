@@ -68,8 +68,7 @@ install_tflint() {
         $TAR_CMD zxf "${download_path}" -C "${install_bin_path}"
     elif [[ "$(uname)" == "Linux" ]]; then
         # Linux
-        TAR_CMD="tar"
-        $TAR_CMD -xzf "${download_path}" -C "${install_bin_path}"
+        unzip "${download_path}" -d "${install_bin_path}"
     else
         echo "Unsupported operating system"
         exit 1
