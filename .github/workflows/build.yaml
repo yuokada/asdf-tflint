@@ -19,7 +19,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       # - uses: asdf-vm/actions/install@v3
       - name: asdf_plugin_test
         uses: asdf-vm/actions/plugin-test@v3
@@ -32,6 +32,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Run ShellCheck
         run: shellcheck bin/*
